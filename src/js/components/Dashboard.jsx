@@ -8,6 +8,8 @@ import Toolbar from './Toolbar';
 import Footer from './Footer';
 import _ from 'lodash';
 
+const VALID_USERS = ["eliranha","evgenybron","AlexStanovsky","yosiat","burgalon","elad-yosifon","Alaev"];
+
 class Main extends React.Component {
 
   renderLoading() {
@@ -47,27 +49,21 @@ class Main extends React.Component {
   }
 
     renderPullRequest() {
-      let users = {};
-      let prs = {};
-        //
+        let users = {};
+        let prs = {};
         _.each(this.props.pullRequests, pr => {
 
             _.each(pr.assignees, assignee => {
 
-                if (["eliranha","evgenybron","AlexStanovsky","yosiat","burgalon","elad-yosifon","Alaev"].includes(assignee.username)) {
+                if (VALID_USERS.includes(assignee.username)) {
                     if (!users[assignee.username]) {
                         users[assignee.username] = assignee;
                         prs[assignee.username] = []
                     }
                     prs[assignee.username].push(pr);
-
-
                 }
             });
-
         });
-
-
 
         return _.chain(users)
             .values()
