@@ -52,14 +52,31 @@ footer {
   }
 }
 
+
+.assignee {
+  background-color: #FEFEFE;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+
+  .assignee-info {
+    display: flex;
+    align-items:center;
+    color:#046180;
+  }
+
+}
+
 .pull-request {
   align-items: center;
   background-color: #FEFEFE;
   border: 1px solid #CCCCCC;
   border-radius: 5px;
   display: flex;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  margin: 5px;
+  margin-left : 20px;
+  padding: 0px;
 
   img {
     vertical-align: middle;
@@ -304,7 +321,7 @@ button {
 
 .container-header {
   padding: 0.5rem;
-  display: flex;
+  display: none;
   align-items: center;
   background-color: #C4D2E6;
   box-shadow: 1px 1px 1px #999999;

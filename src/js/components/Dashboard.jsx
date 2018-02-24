@@ -49,23 +49,40 @@ class Main extends React.Component {
     renderPullRequest() {
       let users = {};
       let prs = {};
-      //
-       _.each(this.props.pullRequests,pr => {
+        //
+        _.each(this.props.pullRequests, pr => {
 
-           _.each(pr.assignees, assignee => {
-                if (!users[assignee.username]){
-                    users[assignee.username] = assignee;
-                    prs[assignee.username] = []
+            _.each(pr.assignees, assignee => {
+
+                if (["eliranha","evgenybron","AlexStanovsky","yosiat","burgalon","elad-yosifon","Alaev"].includes(assignee.username)) {
+                    if (!users[assignee.username]) {
+                        users[assignee.username] = assignee;
+                        prs[assignee.username] = []
+                    }
+                    prs[assignee.username].push(pr);
+
+
                 }
-               prs[assignee.username].push(pr);
             });
+
         });
-        users = _.chain(users).values().flatten().value();
-        // return  .map(prs,pr =>
+
+
+
+        return _.chain(users)
+            .values()
+            .flatten()
+            .sortBy(user => - prs[user.username].length)
+            .map(user =>
+                <div key={user.id}>
+                    <PullRequestAssignee key={user.id} PullRequestAssignee={{user: user, prs: prs[user.username]}}/>
+
+                </div>)
+            .value();
+
+        // _.sortBy(myArray, o => o.name) _.sortBy(myArray, o => o.name)
         return _.map(users, user =>
-        // const usrPrs = _.values(prs);
-        // let i = 0;
-        // return usrPrs.map(pr =>
+
             <div key={user.id}>
                 <PullRequestAssignee key={user.id} PullRequestAssignee={{user: user, prs: prs[user.username]}}/>
 

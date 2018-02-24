@@ -6,11 +6,9 @@ import PullRequest from './PullRequest';
 import '../../images/git-pull-request.svg';
 
 import UserPhoto from './UserPhoto';
-import { Comments } from './Comments';
-import { Status } from './Status';
 
-const CLASS_BASE = 'pull-request';
-const CLASS_MERGEABLE = `${CLASS_BASE} ${CLASS_BASE}--mergeable`;
+const ASSIGNEE_CLASS = 'assignee';
+
 
 export default class PullRequestAssignee extends React.Component {
 
@@ -24,11 +22,18 @@ export default class PullRequestAssignee extends React.Component {
 
   render() {
     const assignee = this.props.PullRequestAssignee;
-    const className = CLASS_BASE;
+    const className = ASSIGNEE_CLASS;
 
     return (
       <div className={className}>
-        <UserPhoto size={50} user={assignee.user} />
+          <div className="assignee-info">
+              <UserPhoto size={50} user={assignee.user}/>
+              <div className="assignee-info-1">
+                  <b>{assignee.user.username}:  </b>
+                  <b>Number of pull requests waiting: {assignee.prs.length}</b>
+              </div>
+          </div>
+
 
           {assignee.prs.map(pr =>
               <div key={pr.id}>

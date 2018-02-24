@@ -38,7 +38,7 @@ export default class PullRequest extends React.Component {
 
     return (
       <div className={className}>
-        <UserPhoto size={50} user={pr.user} />
+        <UserPhoto size={35} user={pr.user} />
         <div className="pull-request-info">
           <div className="pull-request-title">
             <img src="images/git-pull-request.svg" alt="Pull request" />
@@ -60,9 +60,7 @@ export default class PullRequest extends React.Component {
               reactions={pr.reactions}
             />
           </div>
-          <div className="pull-request-created" title={this.formatTime('Created', pr.created)}>
-            Opened by {pr.user.username} {this.formatRelativeTime(pr.created)}
-          </div>
+
         </div>
         <div
           className="pull-request-last-updated"
