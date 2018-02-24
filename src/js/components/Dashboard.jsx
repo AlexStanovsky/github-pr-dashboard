@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PullRequest from './PullRequest';
+
+import PullRequestAssignee from './PullRequestAssignee';
 import LoadingOverlay from './LoadingOverlay';
 import ErrorMessage from './ErrorMessage';
 import Toolbar from './Toolbar';
 import Footer from './Footer';
+import _ from 'lodash';
 
 class Main extends React.Component {
 
@@ -39,16 +41,39 @@ class Main extends React.Component {
       <div>
         {this.renderFailedRepos()}
         {this.renderLoading()}
-        {this.props.pullRequests.map(pr =>
-          <div key={pr.id}>
-            <PullRequest key={pr.id} pullRequest={pr} />
-          </div>
-        )}
+        {this.renderPullRequest()}
       </div>
     );
   }
 
-  render() {
+    renderPullRequest() {
+      let users = {};
+      let prs = {};
+      //
+       _.each(this.props.pullRequests,pr => {
+
+           _.each(pr.assignees, assignee => {
+                if (!users[assignee.username]){
+                    users[assignee.username] = assignee;
+                    prs[assignee.username] = []
+                }
+               prs[assignee.username].push(pr);
+            });
+        });
+        users = _.chain(users).values().flatten().value();
+        // return  .map(prs,pr =>
+        return _.map(users, user =>
+        // const usrPrs = _.values(prs);
+        // let i = 0;
+        // return usrPrs.map(pr =>
+            <div key={user.id}>
+                <PullRequestAssignee key={user.id} PullRequestAssignee={{user: user, prs: prs[user.username]}}/>
+
+            </div>
+        );
+    }
+
+    render() {
     return (
       <div className="container">
         <div className="container-header">

@@ -43,7 +43,12 @@ function getPullRequests(repos) {
         profileUrl: pr.user.html_url,
         avatarUrl: pr.user.avatar_url
       },
-      created: pr.created_at,
+        assignees: pr.assignees.map(user => ({
+            username: user.login,
+            profileUrl: user.html_url,
+            avatarUrl: user.avatar_url
+        })),
+        created: pr.created_at,
       updated: pr.updated_at,
       comments_url: pr.comments_url,
       statuses_url: pr.statuses_url

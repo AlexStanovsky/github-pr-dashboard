@@ -24,13 +24,13 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'eslint',
-        include: [path.resolve(__dirname, 'src')]
-      }
-    ],
+    // preLoaders: [
+    //   {
+    //     test: /\.jsx?$/,
+    //     loader: 'eslint',
+    //     include: [path.resolve(__dirname, 'src')]
+    //   }
+    // ],
 
     loaders: [
       {

@@ -2,6 +2,7 @@
   "apiBaseUrl": "https://api.github.com",
   "username": "",
   "password": "",
+  "token":"95eea825733ca570404e457191f65c1d2c2f0572",
   "groupByRepo": false,
   "repos": [
 
