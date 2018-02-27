@@ -55,7 +55,7 @@ class Main extends React.Component {
 
             _.each(pr.assignees, assignee => {
 
-                if (VALID_USERS.includes(assignee.username)) {
+                if ((VALID_USERS.includes(assignee.username)) && (assignee.username != pr.user.username)) {
                     if (!users[assignee.username]) {
                         users[assignee.username] = assignee;
                         prs[assignee.username] = []
