@@ -8,7 +8,7 @@ import Toolbar from './Toolbar';
 import Footer from './Footer';
 import _ from 'lodash';
 
-const VALID_USERS = ["eliranha","evgenybron","AlexStanovsky","yosiat","burgalon","elad-yosifon","Alaev"];
+const VALID_USERS = ["eliranha","evgenybron","AlexStanovsky","yosiat","burgalon","elad-yosifon","Alaev","serjs21"];
 
 class Main extends React.Component {
 
